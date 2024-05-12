@@ -5,13 +5,13 @@ import { SmartTableData } from 'app/@core/data/smart-table';
 
 @Component({
   selector: 'ngx-dashboard',
-  styleUrls: ['./user.component.scss'],
-  templateUrl: './user.component.html',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss'],
 })
-export class userComponent implements OnInit {
-  ngOnInit(): void { }
+export class ProductsComponent implements OnInit {
+  ngOnInit(): void {}
 
-  users = {
+  products = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -27,34 +27,32 @@ export class userComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      img: {
-        title: 'Hình ảnh',
+      name: {
+        title: 'Tên sản phẩm',
         type: 'string',
       },
-      fullname: {
-        title: 'Họ tên',
+      describe: {
+        title: 'Mô tả',
         type: 'string',
       },
-      birthday: {
-        title: 'Ngày sinh',
-        type: 'string',
-      },
-      address: {
-        title: 'Địa chỉ',
-        type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      phone: {
-        title: 'Số điện thoại',
+      price: {
+        title: 'Giá',
         type: 'number',
       },
-
+      img: {
+        title: 'Ảnh sản phẩm',
+        type: 'string',
+      },
+      quantity: {
+        title: 'Số lượng',
+        type: 'number',
+      },
+      brand: {
+        title: 'Nhãn hiệu',
+        type: 'string',
+      }
     },
   };
-
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableData) {
@@ -69,5 +67,4 @@ export class userComponent implements OnInit {
       event.confirm.reject();
     }
   }
-
 }

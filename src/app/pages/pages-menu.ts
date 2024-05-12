@@ -12,4 +12,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'home-outline',
     link: '/pages/userinfo',
   },
+  {
+    title: 'Product',
+    icon: 'shopping-bag-outline',
+    link: '/pages/products',
+  },
+  {
+    title: 'Customer',
+    icon: 'person-outline',
+    link: '/pages/customers',
+  }
 ];

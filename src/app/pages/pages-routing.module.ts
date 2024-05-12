@@ -4,6 +4,8 @@ import {NgModule} from '@angular/core';
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import { userComponent } from './userinfo/user.component';
+import { ProductsComponent } from './products/products.component';
+import { CustomersComponent } from './customers/customers.component' ;
 
 const routes: Routes = [{
   path: '',
@@ -18,7 +20,17 @@ const routes: Routes = [{
       path: 'userinfo',
       component: userComponent,
       data: {breadcrumb: 'User'},
-    }
+    },
+    {
+      path: 'products',
+      component: ProductsComponent,
+      data: {breadcrumb: 'Product'},
+    },
+    {
+      path: 'customers',
+      component: CustomersComponent,
+      data: {breadcrumb: 'Customer'},
+    },
   ],
 }];
 

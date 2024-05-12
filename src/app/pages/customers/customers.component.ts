@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { SmartTableData } from 'app/@core/data/smart-table';
-
 @Component({
   selector: 'ngx-dashboard',
-  styleUrls: ['./user.component.scss'],
-  templateUrl: './user.component.html',
+  templateUrl: './customers.component.html',
+  styleUrls: ['./customers.component.scss'],
 })
-export class userComponent implements OnInit {
-  ngOnInit(): void { }
+export class CustomersComponent implements OnInit {
+  ngOnInit(): void {}
 
-  users = {
+  customers = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -27,34 +26,20 @@ export class userComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      img: {
-        title: 'Hình ảnh',
-        type: 'string',
-      },
-      fullname: {
-        title: 'Họ tên',
-        type: 'string',
-      },
-      birthday: {
-        title: 'Ngày sinh',
-        type: 'string',
-      },
-      address: {
-        title: 'Địa chỉ',
+      name: {
+        title: 'Tên khách hàng',
         type: 'string',
       },
       email: {
-        title: 'E-mail',
+        title: 'Email',
         type: 'string',
       },
       phone: {
         title: 'Số điện thoại',
         type: 'number',
       },
-
     },
   };
-
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableData) {
@@ -69,5 +54,4 @@ export class userComponent implements OnInit {
       event.confirm.reject();
     }
   }
-
 }

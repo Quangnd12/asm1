@@ -6,6 +6,9 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import { userModule } from './userinfo/user.module';
 import {PagesRoutingModule} from './pages-routing.module';
 import {PaginatorModule} from "../@theme/components/paginator/paginator.module";
+import { productModule } from "./products/product.module";
+import { customerModule } from "./customers/customer.module";
+
 
 @NgModule({
   imports: [
@@ -14,7 +17,9 @@ import {PaginatorModule} from "../@theme/components/paginator/paginator.module";
     DashboardModule,
     NbMenuModule,
     PaginatorModule,
-    userModule
+    userModule,
+    productModule,
+    customerModule
   ],
   declarations: [
     PagesComponent,
