@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { EmployeesData } from 'app/@core/data/employees';
+import { EmployeesData } from 'app/@core/data/smart-table';
 
 @Component({
   selector: 'ngx-dashboard',
-  styleUrls: ['./employees.component.scss'],
-  templateUrl: './employees.component.html',
+  styleUrls: ['./user.component.scss'],
+  templateUrl: './user.component.html',
 })
-export class employeesComponent implements OnInit {
+export class userComponent implements OnInit {
   ngOnInit(): void { }
 
-  employees = {
+  users = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',

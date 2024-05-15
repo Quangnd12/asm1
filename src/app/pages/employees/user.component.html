@@ -1,0 +1,11 @@
+
+<nb-card>
+  <nb-card-header>
+   Bảng thông tin nhân viên
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="users" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
