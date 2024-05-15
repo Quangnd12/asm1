@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-
-import { SmartTableData } from 'app/@core/data/smart-table';
+import { ordersData } from 'app/@core/data/order_table';
 
 @Component({
   selector: 'ngx-dashboard',
-  styleUrls: ['./user.component.scss'],
-  templateUrl: './user.component.html',
+  styleUrls: ['./orders.component.scss'],
+  templateUrl: './orders.component.html',
 })
-export class userComponent implements OnInit {
+export class ordersComponent implements OnInit {
   ngOnInit(): void { }
 
-  users = {
+  orders = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -28,41 +27,33 @@ export class userComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      id: {
-        title: 'ID',
+      id_cs: {
+        title: 'ID_Customer',
         type: 'number',
       },
-      img: {
-        title: 'Hình ảnh',
-        type: 'string',
-      },
-      fullname: {
-        title: 'Họ tên',
-        type: 'string',
-      },
-      birthday: {
-        title: 'Ngày sinh',
-        type: 'string',
-      },
-      address: {
-        title: 'Địa chỉ',
-        type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      phone: {
-        title: 'Số điện thoại',
+      id_pr: {
+        title: 'ID_Product',
         type: 'number',
       },
+      quantity: {
+        title: 'Số lượng',
+        type: 'number',
+      },
+      order_date: {
+        title: 'Ngày đặt hàng',
+        type: 'string',
+      },
+      order_status: {
+        title: 'Tình trạng đặt hàng',
+        type: 'string',
+      }
 
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData) {
+  constructor(private service: ordersData) {
     const data = this.service.getData();
     this.source.load(data);
   }

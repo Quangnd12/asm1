@@ -1,9 +1,10 @@
-import {RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import {PagesComponent} from './pages.component';
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import { userComponent } from './userinfo/user.component';
+import { PagesComponent } from './pages.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { userComponent } from './employees/user.component';
+import { ordersComponent } from './orders/orders.component';
 
 const routes: Routes = [{
   path: '',
@@ -12,12 +13,17 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: DashboardComponent,
-      data: {breadcrumb: 'Dashboard'},
+      data: { breadcrumb: 'Dashboard' },
     },
     {
-      path: 'userinfo',
+      path: 'employees',
       component: userComponent,
-      data: {breadcrumb: 'User'},
+      data: { breadcrumb: 'User' },
+    },
+    {
+      path: 'orders',
+      component: ordersComponent,
+      data: { breadcrumb: 'Orders' },
     }
   ],
 }];

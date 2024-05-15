@@ -5,16 +5,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class SmartTableData {
+export class EmployeesData {
 
   constructor() { }
 
   getData(): any[] {
 
     return [
-      { id: 1, fullname: 'John', birthday: '1/1/2023', address: 'Cần thơ', email: 'john@example.com', phone: 123454678,img:'1.jpg' },
+      { id_employees: 1, name: 'Hieu', position: 'nhân viên', phone: 123454678, address: 'Cần thơ', email: 'john@example.com', sex: 'Nam', date_create: '12/12/2022' },
 
     ];
   }
+
 }
 

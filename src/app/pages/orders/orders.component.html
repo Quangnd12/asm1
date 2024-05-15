@@ -1,0 +1,9 @@
+<nb-card>
+  <nb-card-header>
+    Bảng thông tin orders
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="orders" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
