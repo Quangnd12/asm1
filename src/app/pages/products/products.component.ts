@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-
-import { SmartTableData } from 'app/@core/data/smart-table';
+import { IProduct } from 'app/@core/data/product';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -9,7 +8,6 @@ import { SmartTableData } from 'app/@core/data/smart-table';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  ngOnInit(): void {}
 
   products = {
     add: {
@@ -39,9 +37,12 @@ export class ProductsComponent implements OnInit {
         title: 'Giá',
         type: 'number',
       },
-      img: {
+      images: {
         title: 'Ảnh sản phẩm',
-        type: 'string',
+        type: 'html',
+        valuePrepareFunction: (images: string) => {
+          return `<img src="/assets/images/${images}" width="100px" height="100px"/>`;
+        },
       },
       quantity: {
         title: 'Số lượng',
@@ -55,10 +56,12 @@ export class ProductsComponent implements OnInit {
   };
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData) {
+  constructor(private service: IProduct) {
     const data = this.service.getData();
     this.source.load(data);
   }
+
+  ngOnInit(): void {}
 
   onDeleteConfirm(event): void {
     if (window.confirm('Bạn chắc chắn muốn xóa?')) {

@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { SmartTableData } from 'app/@core/data/smart-table';
+import { ICustomer } from 'app/@core/data/customer';
 @Component({
   selector: 'ngx-dashboard',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnInit {
-  ngOnInit(): void {}
-
   customers = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
@@ -42,11 +40,12 @@ export class CustomersComponent implements OnInit {
   };
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData) {
+  constructor(private service: ICustomer) {
     const data = this.service.getData();
     this.source.load(data);
   }
-
+  ngOnInit(): void {}
+  
   onDeleteConfirm(event): void {
     if (window.confirm('Bạn chắc chắn muốn xóa?')) {
       event.confirm.resolve();
