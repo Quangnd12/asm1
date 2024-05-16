@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { userComponent } from './userinfo/user.component';
 import { ProductsComponent } from './products/products.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ordersComponent } from './orders/orders.component';
@@ -19,11 +18,6 @@ const routes: Routes = [{
       data: { breadcrumb: 'Dashboard' },
     },
     {
-      path: 'userinfo',
-      component: userComponent,
-      data: { breadcrumb: 'User' },
-    },
-    {
       path: 'products',
       component: ProductsComponent,
       data: { breadcrumb: 'Product' },
@@ -36,7 +30,7 @@ const routes: Routes = [{
     {
       path: 'employees',
       component: employeesComponent,
-      data: { breadcrumb: 'User' },
+      data: { breadcrumb: 'Employees' },
     },
     {
       path: 'orders',
