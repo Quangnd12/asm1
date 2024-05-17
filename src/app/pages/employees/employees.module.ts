@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { userComponent } from './user.component';
-import {BreadcrumbModule} from "xng-breadcrumb";
+import { employeesComponent } from './employees.component';
+import { BreadcrumbModule } from "xng-breadcrumb";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
 
@@ -12,7 +12,7 @@ import { NbCardModule } from '@nebular/theme';
     NbCardModule
   ],
   declarations: [
-    userComponent
+    employeesComponent
   ],
 })
-export class userModule { }
+export class emloyeesModule { }

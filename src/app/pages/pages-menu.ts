@@ -1,16 +1,11 @@
 import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
-  
+
   {
     title: 'Dashboard',
     icon: 'home-outline',
     link: '/pages/dashboard',
-  },
-  {
-    title: 'User',
-    icon: 'home-outline',
-    link: '/pages/userinfo',
   },
   {
     title: 'Product',
@@ -21,5 +16,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Customer',
     icon: 'person-outline',
     link: '/pages/customers',
-  }
+  },
+  {
+    title: 'Employees',
+    icon: 'people-outline',
+    link: '/pages/employees',
+  },
+  {
+    title: 'Orders',
+    icon: 'shopping-cart-outline',
+    link: '/pages/orders',
+  },
 ];

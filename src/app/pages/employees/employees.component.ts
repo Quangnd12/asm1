@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { ordersData } from 'app/@core/data/order_table';
+import { EmployeesData } from 'app/@core/data/employees';
 
 @Component({
   selector: 'ngx-dashboard',
-  styleUrls: ['./orders.component.scss'],
-  templateUrl: './orders.component.html',
+  styleUrls: ['./employees.component.scss'],
+  templateUrl: './employees.component.html',
 })
-export class ordersComponent implements OnInit {
+export class employeesComponent implements OnInit {
   ngOnInit(): void { }
 
-  orders = {
+  employees = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -27,25 +27,37 @@ export class ordersComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      id_cs: {
-        title: 'ID_Customer',
+      id_employees: {
+        title: 'ID',
         type: 'number',
       },
-      id_pr: {
-        title: 'ID_Product',
-        type: 'number',
-      },
-      quantity: {
-        title: 'Số lượng',
-        type: 'number',
-      },
-      order_date: {
-        title: 'Ngày đặt hàng',
+      name: {
+        title: 'Họ và Tên',
         type: 'string',
       },
-      order_status: {
-        title: 'Tình trạng đặt hàng',
+      position: {
+        title: 'Chức vụ',
         type: 'string',
+      },
+      phone: {
+        title: 'Số điện thoại',
+        type: 'number',
+      },
+      address: {
+        title: 'Địa chỉ',
+        type: 'string',
+      },
+      email: {
+        title: 'E-mail',
+        type: 'string',
+      },
+      sex: {
+        title: 'Giới Tính',
+        type: 'string',
+      },
+      date_create: {
+        title: 'Ngày tạo',
+        type: 'date',
       }
 
     },
@@ -53,7 +65,7 @@ export class ordersComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: ordersData) {
+  constructor(private service: EmployeesData) {
     const data = this.service.getData();
     this.source.load(data);
   }
