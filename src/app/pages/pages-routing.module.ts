@@ -7,6 +7,8 @@ import { ProductsComponent } from './products/products.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ordersComponent } from './orders/orders.component';
 import { employeesComponent } from './employees/employees.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { StaffComponent } from './staff/staff.component';
 
 const routes: Routes = [{
   path: '',
@@ -36,6 +38,16 @@ const routes: Routes = [{
       path: 'orders',
       component: ordersComponent,
       data: { breadcrumb: 'Orders' },
+    },
+    {
+      path: 'feedback',
+      component: FeedbackComponent,
+      data: { breadcrumb: 'Feedback' },
+    },
+    {
+      path: 'staff',
+      component: StaffComponent,
+      data: { breadcrumb: 'staff' },
     },
   ],
 }];

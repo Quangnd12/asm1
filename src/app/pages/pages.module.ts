@@ -11,9 +11,14 @@ import { productModule } from "./products/product.module";
 import { customerModule } from "./customers/customer.module";
 import { ordersModule } from './orders/order.module';
 import { emloyeesModule } from './employees/employees.module';
+import { FeedbackModule } from './feedback/feedback.module';
+import { StaffComponent } from './staff/staff.component';
+import { StaffModule } from './staff/staff.module';
 
 @NgModule({
   imports: [
+    StaffModule,
+    FeedbackModule,
     PagesRoutingModule,
     ThemeModule,
     DashboardModule,
