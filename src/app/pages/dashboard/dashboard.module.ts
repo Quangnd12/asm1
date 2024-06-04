@@ -4,6 +4,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DashboardComponent } from './dashboard.component';
 import { EchartsComponent } from './echarts/echarts.component';
+import { NbCardModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { EchartsComponent } from './echarts/echarts.component';
   imports: [
     CommonModule,
     BreadcrumbModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    NbCardModule
   ]
 })
 export class DashboardModule { }

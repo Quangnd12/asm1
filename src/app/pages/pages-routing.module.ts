@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { userComponent } from './userinfo/user.component';
-import { ProductsComponent } from './products/products.component';
-import { CustomersComponent } from './customers/customers.component';
+
 import { ordersComponent } from './orders/orders.component';
 import { employeesComponent } from './employees/employees.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { StaffComponent } from './staff/staff.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,29 +19,34 @@ const routes: Routes = [{
       data: { breadcrumb: 'Dashboard' },
     },
     {
-      path: 'userinfo',
-      component: userComponent,
-      data: { breadcrumb: 'User' },
-    },
-    {
       path: 'products',
-      component: ProductsComponent,
+      loadChildren: () => import('./products/product.module').then(m => m.productModule),
       data: { breadcrumb: 'Product' },
     },
     {
       path: 'customers',
-      component: CustomersComponent,
+      loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule),
       data: { breadcrumb: 'Customer' },
     },
     {
       path: 'employees',
       component: employeesComponent,
-      data: { breadcrumb: 'User' },
+      data: { breadcrumb: 'Employees' },
     },
     {
       path: 'orders',
       component: ordersComponent,
       data: { breadcrumb: 'Orders' },
+    },
+    {
+      path: 'feedback',
+      component: FeedbackComponent,
+      data: { breadcrumb: 'Feedback' },
+    },
+    {
+      path: 'staff',
+      component: StaffComponent,
+      data: { breadcrumb: 'staff' },
     },
   ],
 }];

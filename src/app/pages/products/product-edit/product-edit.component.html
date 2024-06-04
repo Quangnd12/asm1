@@ -1,0 +1,53 @@
+<nb-card>
+    <nb-card-header>
+      <h2 class="text-center">Cập nhật</h2>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="productForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <div class="form-group mb-3">
+          <label for="name" class="form-label">Tên sản phẩm</label>
+          <input id="name" formControlName="name" class="form-control" type="text" required />
+          <div *ngIf="productForm.get('name').touched && productForm.get('name').invalid" class="invalid-feedback">
+            Tên sản phẩm là bắt buộc.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="describe" class="form-label">Mô tả</label>
+          <textarea id="describe" formControlName="describe" class="form-control" rows="3" required></textarea>
+          <div *ngIf="productForm.get('describe').touched && productForm.get('describe').invalid" class="invalid-feedback">
+            Mô tả là bắt buộc.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="price" class="form-label">Giá</label>
+          <input id="price" formControlName="price" class="form-control" type="number" required />
+          <div *ngIf="productForm.get('price').touched && productForm.get('price').invalid" class="invalid-feedback">
+            Giá là bắt buộc.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="image" class="form-label">Ảnh sản phẩm</label>
+          <input id="image" formControlName="image" class="form-control" type="file" (change)="onFileChange($event)" />
+          <div *ngIf="productForm.get('image').touched && productForm.get('image').invalid" class="invalid-feedback">
+            Ảnh sản phẩm là bắt buộc.
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="quantity" class="form-label">Số lượng</label>
+          <input id="quantity" formControlName="quantity" class="form-control" type="number" required />
+          <div *ngIf="productForm.get('quantity').touched && productForm.get('quantity').invalid" class="invalid-feedback">
+            Số lượng là bắt buộc.
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <label for="brand" class="form-label">Nhãn hiệu</label>
+          <input id="brand" formControlName="brand" class="form-control" type="text" required />
+          <div *ngIf="productForm.get('brand').touched && productForm.get('brand').invalid" class="invalid-feedback">
+            Nhãn hiệu là bắt buộc.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!productForm.valid">Lưu thay đổi</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+  

@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { StaffData } from './../../@core/data/staff';
+import { Component , OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { SmartTableData } from 'app/@core/data/smart-table';
-
 @Component({
-  selector: 'ngx-dashboard',
-  styleUrls: ['./user.component.scss'],
-  templateUrl: './user.component.html',
+  selector: 'app-staff',
+  templateUrl: './staff.component.html',
+  styleUrls: ['./staff.component.scss']
 })
-export class userComponent implements OnInit {
-  ngOnInit(): void { }
-
-  users = {
+export class StaffComponent {
+  customers = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -27,37 +24,31 @@ export class userComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      img: {
-        title: 'Hình ảnh',
+      name: {
+        title: 'Tên nhân viên',
         type: 'string',
       },
-      fullname: {
-        title: 'Họ tên',
+      content: {
+        title: 'Nội dung Đào tạo',
         type: 'string',
       },
-      birthday: {
-        title: 'Ngày sinh',
+      trainers: {
+        title: 'Người đào tạo',
         type: 'string',
       },
-      address: {
-        title: 'Địa chỉ',
+      note: {
+        title: 'Ghi chú',
         type: 'string',
       },
-      email: {
-        title: 'E-mail',
+      date: {
+        title: 'Ngày đào tạo',
         type: 'string',
       },
-      phone: {
-        title: 'Số điện thoại',
-        type: 'number',
-      },
-
     },
   };
-
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData) {
+  constructor(private service: StaffData) {
     const data = this.service.getData();
     this.source.load(data);
   }
@@ -69,5 +60,4 @@ export class userComponent implements OnInit {
       event.confirm.reject();
     }
   }
-
 }

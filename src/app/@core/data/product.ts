@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 })
 
 export class IProduct {
+    deleteProduct(id: any) {
+      throw new Error('Method not implemented.');
+    }
     constructor() { }
 
     getData(): any[] {

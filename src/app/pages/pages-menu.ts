@@ -8,11 +8,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
   },
   {
-    title: 'User',
-    icon: 'home-outline',
-    link: '/pages/userinfo',
-  },
-  {
     title: 'Product',
     icon: 'shopping-bag-outline',
     link: '/pages/products',
@@ -24,12 +19,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Employees',
-    icon: 'home-outline',
+    icon: 'people-outline',
     link: '/pages/employees',
   },
   {
-    title: 'Oders',
-    icon: 'home-outline',
+    title: 'Orders',
+    icon: 'shopping-cart-outline',
     link: '/pages/orders',
+  },
+  {
+    title: 'Feedback',
+    icon: 'file-remove',
+    link: '/pages/feedback',
+  },
+  {
+    title: 'Staff',
+    icon: 'people',
+    link: '/pages/staff',
   },
 ];

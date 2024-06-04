@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
+import { FeedBackData } from 'app/@core/data/feedback';
 import { LocalDataSource } from 'ng2-smart-table';
-import { IProduct } from 'app/@core/data/product';
 
 @Component({
-  selector: 'ngx-dashboard',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  selector: 'app-feedback',
+  templateUrl: './feedback.component.html',
+  styleUrls: ['./feedback.component.scss'],
 })
-export class ProductsComponent implements OnInit {
-
-  products = {
+export class FeedbackComponent implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+  customers = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
@@ -26,42 +28,29 @@ export class ProductsComponent implements OnInit {
     },
     columns: {
       name: {
-        title: 'Tên sản phẩm',
+        title: 'Tên khách hàng',
         type: 'string',
       },
-      describe: {
-        title: 'Mô tả',
+      content: {
+        title: 'Nội dung',
         type: 'string',
       },
-      price: {
-        title: 'Giá',
-        type: 'number',
-      },
-      images: {
-        title: 'Ảnh sản phẩm',
-        type: 'html',
-        valuePrepareFunction: (images: string) => {
-          return `<img src="/assets/images/${images}" width="100px" height="100px"/>`;
-        },
-      },
-      quantity: {
-        title: 'Số lượng',
-        type: 'number',
-      },
-      brand: {
-        title: 'Nhãn hiệu',
+      star: {
+        title: 'Mức độ hài lòng',
         type: 'string',
-      }
+      },
+      date: {
+        title: 'Ngày phản hồi',
+        type: 'string',
+      },
     },
   };
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: IProduct) {
+  constructor(private service: FeedBackData) {
     const data = this.service.getData();
     this.source.load(data);
   }
-
-  ngOnInit(): void {}
 
   onDeleteConfirm(event): void {
     if (window.confirm('Bạn chắc chắn muốn xóa?')) {
