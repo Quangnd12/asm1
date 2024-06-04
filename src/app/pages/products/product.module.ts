@@ -1,18 +1,29 @@
 import { NgModule } from '@angular/core';
-import { ProductsComponent } from './products.component';
+import { CommonModule } from '@angular/common';
+
 import {BreadcrumbModule} from "xng-breadcrumb";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductsRoutingModule } from './products-routing.module';
 
 
 @NgModule({
   imports: [
-    BreadcrumbModule,
-    Ng2SmartTableModule,
-    NbCardModule
+    CommonModule,
+    ProductsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NbCardModule,
+    BreadcrumbModule
   ],
   declarations: [
-    ProductsComponent
+    ProductListComponent,
+    ProductCreateComponent,
+    ProductEditComponent
   ],
 })
 export class productModule { }
