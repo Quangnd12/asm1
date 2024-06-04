@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LOCALSTORAGE_KEY, ROUTER_CONFIG} from "./@core/config";
 import {Router} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ngx-app',
@@ -10,6 +11,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { IProduct} from '../../../@core/data/product'
+import { IProduct } from '../../../@core/data/product';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,9 +13,13 @@ export class ProductListComponent implements OnInit {
   products: any[] = [];
   productToDelete: any = null;
   deleteModalRef: NgbModalRef | undefined;
-  showDeleteSuccessMessage = false;
 
-  constructor(private router: Router, private modalService: NgbModal, private productService: IProduct,  private toastr: ToastrService) { }
+  constructor(
+    private router: Router,
+    private modalService: NgbModal,
+    private productService: IProduct,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -39,12 +42,13 @@ export class ProductListComponent implements OnInit {
   confirmDelete(): void {
     if (this.productToDelete) {
       this.deleteModalRef?.close();
+      this.deleteProduct(this.productToDelete);
+    }
   }
-  }
+  
   deleteProduct(product: any): void {
-    this.loadProducts(); // Cập nhật danh sách sau khi xóa
-    this.showDeleteSuccessMessage = true; // Đặt biến thành true để hiển thị thông báo
-    this.toastr.success('Xóa thành công', 'Success', {
+    this.loadProducts();
+    this.toastr.success('Xóa sản phẩm thành công', 'Success', {
       progressBar: true,
       timeOut: 3000,
       closeButton: true,
@@ -52,6 +56,7 @@ export class ProductListComponent implements OnInit {
       toastClass: 'ngx-toastr toast-success'
     });
   }
+
   navigateToCreate(): void {
     this.router.navigate(['/pages/products/create']);
   }

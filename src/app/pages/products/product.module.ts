@@ -9,7 +9,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductsRoutingModule } from './products-routing.module';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -18,12 +18,17 @@ import { ProductsRoutingModule } from './products-routing.module';
     FormsModule,
     ReactiveFormsModule,
     NbCardModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    })
   ],
   declarations: [
     ProductListComponent,
     ProductCreateComponent,
-    ProductEditComponent
+    ProductEditComponent,
   ],
 })
 export class productModule { }

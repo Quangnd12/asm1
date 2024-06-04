@@ -39,7 +39,9 @@ export class ProductCreateComponent implements OnInit {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
       console.log('Product created successfully', formData);
+      // Chuyển hướng về trang danh sách sản phẩm sau khi thêm mới thành công
       this.router.navigate(['/pages/products']);
+      // Hiển thị thông báo thành công
       this.toastr.success('Thêm thành công', 'Success', {
         progressBar: true,
         timeOut: 3000,
@@ -47,9 +49,7 @@ export class ProductCreateComponent implements OnInit {
         tapToDismiss: true,
         toastClass: 'ngx-toastr toast-success'
       });
-  
-      // Gọi hàm xử lý sau khi thêm thành công
-      // Ví dụ: this.productListComponent.handleAddSuccess();
+      
     } else {
       this.validateAllFormFields(this.productForm);
     }
