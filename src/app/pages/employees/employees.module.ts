@@ -1,18 +1,30 @@
 import { NgModule } from '@angular/core';
-import { employeesComponent } from './employees.component';
+import { CommonModule } from '@angular/common';
+import { EmployeesRoutingModule } from './employees-routing.module';
 import { BreadcrumbModule } from "xng-breadcrumb";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
+import { EmployeesCreateComponent } from './employees-create/employees-create.component';
+import { EmployeesEditComponent } from './employees-edit/employees-edit.component';
+import { EmployeesListComponent } from './employees-list/employees-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
-  imports: [
-    BreadcrumbModule,
-    Ng2SmartTableModule,
-    NbCardModule
-  ],
   declarations: [
-    employeesComponent
+    EmployeesCreateComponent,
+    EmployeesEditComponent,
+    EmployeesListComponent
   ],
+  imports: [
+    CommonModule,
+    EmployeesRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NbCardModule,
+    BreadcrumbModule,
+  ],
+
 })
 export class emloyeesModule { }
