@@ -1,0 +1,40 @@
+<nb-card *ngIf="infodata">
+    <nb-card-header>
+      <h2 class="text-center">Cập nhật nhân viên</h2>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="StaffForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <div class="form-group mb-3">
+          <label for="username" class="form-label">Tên nhân viên</label>
+          <input id="username" formControlName="username" class="form-control" [(ngModel)]="infodata.username" type="text" required />
+          <div class="err" *ngIf="StaffForm.get('username')!.invalid && (StaffForm.get('username')!.dirty || StaffForm.get('username')!.touched)">
+            tên nhân viên không được bỏ trống
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="content" class="form-label">Nội dung đào tạo </label>
+          <input id="content" formControlName="content" class="form-control" type="test" [(ngModel)]="infodata.content" required />
+          <div class="err" *ngIf="StaffForm.get('content')!.invalid && (StaffForm.get('content')!.dirty || StaffForm.get('content')!.touched)">
+            Nội dung đào tạo  không được bỏ trống
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="trainers" class="form-label">Người đào tạo</label>
+          <input id="trainers" formControlName="trainers" class="form-control" type="text" [(ngModel)]="infodata.trainers" required />
+          <div class="err" *ngIf="StaffForm.get('trainers')!.invalid && (StaffForm.get('trainers')!.dirty || StaffForm.get('trainers')!.touched)">
+            Người đào tạo không được bỏ trống
+          </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="note" class="form-label">Ghi chú</label>
+            <textarea id="note" formControlName="note" class="form-control" rows="3"  [(ngModel)]="infodata.note" required></textarea>
+            <!-- <div *ngIf="customerForm.get('phone').touched && customerForm.get('phone').invalid" class="invalid-feedback">
+              Số điện thoại không hợp lệ.
+            </div> -->
+          </div>
+          
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!StaffForm.valid">Chỉnh sửa</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+  

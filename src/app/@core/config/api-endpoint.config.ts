@@ -8,5 +8,6 @@ export const API_ENDPOINT: IAPIEndpoint = {
     base: API_BASE_URL + '/' + 'auth',
     login: '/auth/login',
     logout: '/auth/logout',
+    staff:  API_BASE_URL + '/' + 'staffs'
   },
 };

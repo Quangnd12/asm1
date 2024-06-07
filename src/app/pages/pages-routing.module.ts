@@ -7,7 +7,6 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ordersComponent } from './orders/orders.component';
 import { employeesComponent } from './employees/employees.component';
 import { FeedbackComponent } from './feedback/feedback.component';
-import { StaffComponent } from './staff/staff.component';
 
 const routes: Routes = [{
   path: '',
@@ -43,9 +42,9 @@ const routes: Routes = [{
       component: FeedbackComponent,
       data: { breadcrumb: 'Feedback' },
     },
-    {
+   {
       path: 'staff',
-      component: StaffComponent,
+      loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule),
       data: { breadcrumb: 'staff' },
     },
   ],
