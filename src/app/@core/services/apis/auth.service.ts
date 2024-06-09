@@ -28,11 +28,17 @@ export class AuthService {
     if (token) {
       const expired = this.jwtHelperService.isTokenExpired(token);
       if (expired) {
-        localStorage.clear();
+        this.logout();
       }
       return !expired;
     }
     return false;
+  }
+
+  logout(): Observable<any> {
+    const token = this.getToken();
+    localStorage.clear();
+    return this._http.post(`${this.apiUrl}/auth/login`, { token });
   }
 
   getToken(): string | null {
