@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { FeedbackComponent } from './feedback/feedback.component';
-import { StaffComponent } from './staff/staff.component';
+// import { FeedbackComponent } from './feedback/feedback.component';
+// import { StaffComponent } from './staff/staff.component';
+
+// import { ordersComponent } from './orders/orders.component';
+// import { employeesComponent } from './employees/employees.component';
 
 const routes: Routes = [{
   path: '',
@@ -37,14 +40,15 @@ const routes: Routes = [{
     },
     {
       path: 'feedback',
-      component: FeedbackComponent,
+      loadChildren: () => import('./feedback/feedback.module').then(m => m.FeedbackModule),
       data: { breadcrumb: 'Feedback' },
     },
-    {
+   {
       path: 'staff',
-      component: StaffComponent,
+      loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule),
       data: { breadcrumb: 'staff' },
     },
+ 
   ],
 }];
 

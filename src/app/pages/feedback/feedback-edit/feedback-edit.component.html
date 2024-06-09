@@ -1,0 +1,39 @@
+<nb-card>
+    <nb-card-header>
+      <h2 class="text-center">Chỉnh sửa phản hồi</h2>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="FeedbackForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <div class="form-group mb-3">
+          <label for="username" class="form-label">Tên khách hàng</label>
+          <input id="username" formControlName="username" class="form-control"  [(ngModel)]="infodata.username"  type="text" required />
+          <div class="err" *ngIf="FeedbackForm.get('username')!.invalid && (FeedbackForm.get('username')!.dirty || FeedbackForm.get('username')!.touched)">
+            Tên khách hàng không được bỏ trống
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="content" class="form-label">Nội dung </label>
+          <input id="content" formControlName="content" class="form-control"  [(ngModel)]="infodata.content"  type="test" required />
+          <div class="err" *ngIf="FeedbackForm.get('content')!.invalid && (FeedbackForm.get('content')!.dirty || FeedbackForm.get('content')!.touched)">
+            Nội dung  không được bỏ trống
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="star" class="form-label">Sao Đánh giá</label>
+          <select class="form-control" [(ngModel)]="infodata.star" formControlName="star" name="star" id="star">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option selected value="5">5</option>
+          </select>
+          <div class="err" *ngIf="FeedbackForm.get('star')!.invalid && (FeedbackForm.get('star')!.dirty || FeedbackForm.get('star')!.touched)">
+            Đánh giá không được bỏ trống
+          </div>
+        </div>
+          
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!FeedbackForm.valid">Chỉnh sửa</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+  
