@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LocalStorageService } from '../common';
+import { LOCALSTORAGE_KEY } from '../../config';
 
 export interface ILogin {
   useremail: string;
@@ -10,14 +12,16 @@ export interface ILogin {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private apiUrl = environment.apiBaseUrl;
   private jwtHelperService = new JwtHelperService();
 
-  constructor(private _http: HttpClient) { }
+  constructor(
+    private _http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   login(data: ILogin): Observable<any> {
     return this._http.post(`${this.apiUrl}/auth/login`, data);
@@ -42,6 +46,6 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return this.localStorageService.getItem<any>(LOCALSTORAGE_KEY.token);
   }
 }
