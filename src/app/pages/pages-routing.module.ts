@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
-
-import { ordersComponent } from './orders/orders.component';
-import { employeesComponent } from './employees/employees.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { StaffComponent } from './staff/staff.component';
 
@@ -30,12 +27,12 @@ const routes: Routes = [{
     },
     {
       path: 'employees',
-      component: employeesComponent,
+      loadChildren: () => import("./employees/employees.module").then(m => m.emloyeesModule),
       data: { breadcrumb: 'Employees' },
     },
     {
       path: 'orders',
-      component: ordersComponent,
+      loadChildren: () => import("./orders/order.module").then(m => m.ordersModule),
       data: { breadcrumb: 'Orders' },
     },
     {

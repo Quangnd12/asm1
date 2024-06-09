@@ -1,18 +1,28 @@
 import { NgModule } from '@angular/core';
-import { ordersComponent } from './orders.component';
 import { BreadcrumbModule } from "xng-breadcrumb";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
+import { OrdersCreateComponent } from './orders-create/orders-create.component';
+import { OrdersEditComponent } from './orders-edit/orders-edit.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrdersRoutingModule } from './orders-routing.module';
 
 
 @NgModule({
-  imports: [
-    BreadcrumbModule,
-    Ng2SmartTableModule,
-    NbCardModule
-  ],
   declarations: [
-    ordersComponent
+    OrdersCreateComponent,
+    OrdersEditComponent,
+    OrdersListComponent,
   ],
+  imports: [
+    CommonModule,
+    OrdersRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NbCardModule,
+    BreadcrumbModule,
+  ],
+
 })
 export class ordersModule { }

@@ -1,4 +1,4 @@
-import {IRouterConfig} from "../interfaces";
+import { IRouterConfig } from "../interfaces";
 
 export const ROUTER_CONFIG: IRouterConfig = {
   pageNotFound: 'not-found',
