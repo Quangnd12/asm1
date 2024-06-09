@@ -2,13 +2,10 @@ import { ExportService } from './../../../@core/services/common/exportEx.service
 import { StaffService } from './../../../@core/services/apis/staff.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { IProduct } from '../../../@core/data/product';
 import { ToastrService } from 'ngx-toastr';
 import { StaffInfo } from 'app/@core/model/staff.model';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-staff-list',

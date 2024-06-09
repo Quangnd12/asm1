@@ -2,6 +2,8 @@ import {Component, ViewEncapsulation, Input, OnInit, Output, EventEmitter} from 
 import {ApiService} from "../../../@core/services/common";
 import {finalize, Observable} from "rxjs";
 import {SpinnerService} from "../spinner/spinner.service";
+import { AuthService } from 'app/@core/services/apis';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'ngx-paginator',
@@ -17,9 +19,11 @@ export class PaginatorComponent implements OnInit {
   indexPage: number = 1;
   hasPreviousPage: boolean = true;
   hasNextPage: boolean = false;
+  limit: number = 4
   constructor(
       private apiService: ApiService,
       private spinner: SpinnerService,
+      private authService : AuthService , private _http: HttpClient
   ) {
   }
   ngOnInit() {}
@@ -59,9 +63,11 @@ export class PaginatorComponent implements OnInit {
       this.getData();
     }
   }
-
+  httpOptions  = {
+    headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.getToken() })
+  };
   getPaginator(): Observable<any> {
-    return this.apiService.get(this.apiUrl + '?page=' + Number(this.indexPage));
+    return this._http.get(this.apiUrl + '?page=' + Number(this.indexPage)+'&numberofProduct='+ this.limit , this.httpOptions);
   }
 
   getData() {

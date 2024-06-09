@@ -5,7 +5,7 @@
     <button nbButton status="primary" (click)="goPreviousPage()" [disabled]="hasPreviousPage">
         <nb-icon icon="arrow-left-outline"></nb-icon>
     </button>
-    <p class="paginator-page">{{ current_page }}/{{ last_page }}</p>
+    <p class="paginator-page">{{ indexPage }}/{{ last_page }}</p>
     <button nbButton status="primary" class="me-1" (click)="goNextPage()" [disabled]="hasNextPage">
         <nb-icon icon="arrow-right-outline"></nb-icon>
     </button>
