@@ -1,14 +1,20 @@
 <nb-card>
-    <nb-card-header>
-      <div class="d-flex justify-content-between align-items-center">
-        <span>Danh sách sản phẩm</span>
-        <button class="btn btn-primary" nbButton (click)="navigateToCreate()">
+  <nb-card-header>
+    <div class="d-flex justify-content-between align-items-center">
+      <span>Danh sách sản phẩm</span>
+      <div class="ml-auto">
+        <button class="btn btn-primary mr-5" nbButton (click)="navigateToCreate()">
           <span>Thêm</span><i class="bi bi-plus"></i>
         </button>
+        <button class="btn btn-secondary" nbButton (click)="generatePdf()">
+          <span>In PDF</span><i class="bi bi-file-pdf"></i>
+        </button>
       </div>
-    </nb-card-header>
-    <nb-card-body>
-      <div class="table-responsive">
+    </div>    
+  </nb-card-header>
+  <nb-card-body>
+    <div class="table-responsive">
+      <div id="table-to-print">
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
@@ -24,40 +30,40 @@
           <tbody>
             <tr *ngFor="let product of products">
               <td>{{ product.name }}</td>
-              <td>{{ product.describe }}</td>
+              <td>{{ product.describes }}</td>
               <td>{{ product.price }}</td>
               <td>
-                <img [src]="'assets/images/' + product.images" alt="{{ product.name }}" width="50">
-              </td>              
+                <img [src]="'assets/images/' + product.filename" alt="{{ product.name }}" width="50">
+              </td>
               <td>{{ product.quantity }}</td>
               <td>{{ product.brand }}</td>
               <td>
                 <button class="btn btn-primary btn-sm m-md-2" (click)="editProduct(product)">
-                  <i class="bi bi-pencil"></i> 
+                  <i class="bi bi-pencil"></i>
                 </button>
                 <button class="btn btn-danger btn-sm" (click)="openDeleteModal(deleteModal, product)">
-                  <i class="bi bi-trash"></i> 
+                  <i class="bi bi-trash"></i>
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </nb-card-body>
-  </nb-card>
-  
-  <!-- Delete Modal -->
-  <ng-template #deleteModal let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Xóa sản phẩm</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
-    <div class="modal-body">
-      <p>Bạn có chắc chắn muốn xóa sản phẩm này?</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="confirmDelete()">Xóa</button>
-      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel click')">Hủy</button>
-    </div>
-  </ng-template>
-  
+  </nb-card-body>
+</nb-card>
+
+<!-- Delete Modal -->
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Xóa sản phẩm</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Bạn có chắc chắn muốn xóa sản phẩm này?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="confirmDelete()">Xóa</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel click')">Hủy</button>
+  </div>
+</ng-template>

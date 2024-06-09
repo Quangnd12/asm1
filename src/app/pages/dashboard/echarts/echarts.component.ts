@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as echarts from 'echarts';
+import { ProductsService } from '../../../@core/services/apis/products.service'; 
 
 @Component({
   selector: 'app-echarts',
@@ -11,19 +12,33 @@ export class EchartsComponent implements OnInit, AfterViewInit {
   @ViewChild('pieChart') pieChart: ElementRef;
   @ViewChild('barChart') barChart: ElementRef;
 
-  data = [
-    { id: 1, name: 'Cà phê Robusta', sales: 120 },
-    { id: 2, name: 'Cà phê Arabica', sales: 80 },
-    { id: 3, name: 'Cà phê Culi', sales: 60 },
-    { id: 4, name: 'Cà phê Moka', sales: 50 },
-  ];
+  data: { name: string, quantity: string }[] = [];
+
+  constructor(private productService: ProductsService) { }
 
   ngOnInit() {
+    this.loadData();
   }
 
   ngAfterViewInit() {
-    this.initPieChart();
-    this.initBarChart();
+   
+  }
+
+   loadData() {
+    this.productService.getProducts().subscribe(
+      response => {
+        if (response && Array.isArray(response.data)) {
+          this.data = response.data.map(product => ({ name: product.name, quantity: product.quantity }));
+          this.initPieChart();
+          this.initBarChart();
+        } else {
+          console.error('Response is not an array:', response);
+        }
+      },
+      error => {
+        console.error('Error loading products:', error);
+      }
+    );
   }
 
   initPieChart() {
@@ -42,10 +57,10 @@ export class EchartsComponent implements OnInit, AfterViewInit {
       },
       series: [
         {
-          name: 'Sales',
+          name: 'Quantity',
           type: 'pie',
           radius: '50%',
-          data: this.data.map(product => ({ value: product.sales, name: product.name })),
+          data: this.data.map(product => ({ value: product.quantity, name: product.name })),
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -63,7 +78,7 @@ export class EchartsComponent implements OnInit, AfterViewInit {
     const barChart = echarts.init(this.barChart.nativeElement);
     const barOption = {
       title: {
-        text: 'Doanh thu sản phẩm',
+        text: 'Sản phẩm',
         left: 'center'
       },
       tooltip: {
@@ -81,9 +96,9 @@ export class EchartsComponent implements OnInit, AfterViewInit {
       },
       series: [
         {
-          name: 'Sales',
+          name: 'Quantity',
           type: 'bar',
-          data: this.data.map(product => product.sales),
+          data: this.data.map(product => product.quantity),
           emphasis: {
             focus: 'series'
           },
