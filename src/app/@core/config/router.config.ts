@@ -5,7 +5,6 @@ export const ROUTER_CONFIG: IRouterConfig = {
   forbidden: '403',
   auth: {
     login: 'auth/login',
-    logout: "auth/logout",
   },
-  pages: 'pages',
+  pages: 'pages/dashboard',
 };

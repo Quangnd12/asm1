@@ -28,8 +28,7 @@ export class EmployeesCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get username() {
     return this.employeesForm.get('username');
@@ -55,8 +54,8 @@ export class EmployeesCreateComponent implements OnInit {
     if (this.employeesForm.valid) {
       const formData: IEmployees = this.employeesForm.value;
       this.employeesService.createEmployee(formData).subscribe(
-        () => {
-          console.log('Employee created successfully');
+        response => {
+          console.log('Employee created successfully', response);
           this.router.navigate(['/pages/employees']);
           this.toastr.success('Thêm nhân viên thành công', 'Success', {
             progressBar: true,
@@ -66,7 +65,7 @@ export class EmployeesCreateComponent implements OnInit {
             toastClass: 'ngx-toastr toast-success'
           });
         },
-        (error) => {
+        error => {
           console.error('Error creating employee', error);
           this.toastr.error('Thêm nhân viên thất bại', 'Error', {
             progressBar: true,
