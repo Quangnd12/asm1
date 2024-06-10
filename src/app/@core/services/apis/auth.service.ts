@@ -37,7 +37,7 @@ export class AuthService {
 
   logout(): Observable<any> {
     const token = this.getToken();
-    localStorage.clear();
+   localStorage.clear();
     return this._http.post(`${this.apiUrl}/auth/login`, { token });
   }
 

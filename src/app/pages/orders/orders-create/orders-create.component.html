@@ -5,17 +5,23 @@
   <nb-card-body>
     <form [formGroup]="ordersForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
       <div class="form-group mb-3">
-        <label for="id_cs" class="form-label">ID Khách hàng</label>
-        <input id="id_cs" formControlName="id_cs" class="form-control" type="number" required />
-        <div *ngIf="ordersForm.get('id_cs').touched && ordersForm.get('id_cs').invalid" class="invalid-feedback">
-          ID Khách hàng là bắt buộc.
+        <label for="customers" class="form-label">Khách hàng</label>
+        <select id="customers" formControlName="customers" class="form-control" required>
+          <option value="">Chọn khách hàng</option>
+          <option *ngFor="let customer of customers" [ngValue]="customer._id">{{ customer.username }}</option>
+        </select>
+        <div *ngIf="ordersForm.get('customers').touched && ordersForm.get('customers').invalid" class="invalid-feedback">
+          Khách hàng là bắt buộc.
         </div>
       </div>
       <div class="form-group mb-3">
-        <label for="id_pr" class="form-label">ID Sản phẩm</label>
-        <input id="id_pr" formControlName="id_pr" class="form-control" type="number" required />
-        <div *ngIf="ordersForm.get('id_pr').touched && ordersForm.get('id_pr').invalid" class="invalid-feedback">
-          ID Sản phẩm là bắt buộc.
+        <label for="products" class="form-label">Sản phẩm</label>
+        <select id="products" formControlName="products" class="form-control" required>
+          <option value="">Chọn sản phẩm</option>
+          <option *ngFor="let product of products" [ngValue]="product._id">{{ product.name }}</option>
+        </select>
+        <div *ngIf="ordersForm.get('products').touched && ordersForm.get('products').invalid" class="invalid-feedback">
+          Sản phẩm là bắt buộc.
         </div>
       </div>
       <div class="form-group mb-3">
@@ -26,22 +32,17 @@
         </div>
       </div>
       <div class="form-group mb-3">
-        <label for="order_date" class="form-label">Ngày đặt</label>
-        <input id="order_date" formControlName="order_date" class="form-control" type="date" required />
-        <div *ngIf="ordersForm.get('order_date').touched && ordersForm.get('order_date').invalid"
-          class="invalid-feedback">
-          Ngày đặt là bắt buộc.
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <label for="order_status" class="form-label">Trạng thái</label>
-        <input id="order_status" formControlName="order_status" class="form-control" type="text" required />
-        <div *ngIf="ordersForm.get('order_status').touched && ordersForm.get('order_status').invalid"
-          class="invalid-feedback">
+        <label for="status" class="form-label">Trạng thái</label>
+        <select id="status" formControlName="status" class="form-control" required>
+          <option value="">Chọn trạng thái</option>
+          <option value="Đã đặt">Đã đặt</option>
+          <option value="Chưa đặt">Chưa đặt</option>
+        </select>
+        <div *ngIf="ordersForm.get('status').touched && ordersForm.get('status').invalid" class="invalid-feedback">
           Trạng thái là bắt buộc.
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block" [disabled]="!ordersForm.valid">Thêm mới</button>
+      <button type="submit" class="btn btn-primary btn-block">Thêm mới</button>
     </form>
   </nb-card-body>
 </nb-card>
