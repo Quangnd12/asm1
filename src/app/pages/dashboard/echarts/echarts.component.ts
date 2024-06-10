@@ -21,11 +21,10 @@ export class EchartsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-   
   }
 
-   loadData() {
-    this.productService.getProducts().subscribe(
+  loadData(query?: string) {
+    this.productService.getProducts(query).subscribe(
       response => {
         if (response && Array.isArray(response.data)) {
           this.data = response.data.map(product => ({ name: product.name, quantity: product.quantity }));

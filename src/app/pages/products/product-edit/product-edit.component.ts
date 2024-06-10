@@ -13,6 +13,7 @@ export class ProductEditComponent implements OnInit {
   productForm: FormGroup;
   fileToUpload: File | null = null;
   currentFilename: string | null = null; // Lưu trữ tên tệp hiện tại
+  id: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,23 +21,20 @@ export class ProductEditComponent implements OnInit {
     private route: ActivatedRoute,
     private toastrService: ToastrService,
     private productsService: ProductsService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
       describes: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       filename: ['', Validators.required],
       quantity: ['', [Validators.required, Validators.min(0)]],
-      brand: ['', Validators.required],
+      brand: ['', Validators.required]
     });
+  }
 
-    // Lấy từ ID của Sản phẩm từ URL
-    this.route.params.subscribe(params => {
-      const productId = params['id'];
-      this.getProduct(productId);
-    });
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.getProduct(this.id);
   }
 
   getProduct(id: string): void {
@@ -50,7 +48,7 @@ export class ProductEditComponent implements OnInit {
             price: response.price,
             filename: response.filename,
             quantity: response.quantity,
-            brand: response.brand,
+            brand: response.brand ? response.brand.split(',') : [] // Ensure brand is split into array
           });
         }
       },
@@ -78,18 +76,11 @@ export class ProductEditComponent implements OnInit {
         formData.append('filename', this.currentFilename || '');
       }
 
-      const productId = this.route.snapshot.params['id'];
-      this.productsService.updateProduct(productId, formData).subscribe(
+      this.productsService.updateProduct(this.id, formData).subscribe(
         response => {
           console.log('Product updated successfully');
+          this.toastmess();
           this.router.navigate(['/pages/products']);
-          this.toastrService.success('Cập nhật thành công', 'Success', {
-            progressBar: true,
-            timeOut: 3000,
-            closeButton: true,
-            tapToDismiss: true,
-            toastClass: 'ngx-toastr toast-success'
-          });
         },
         error => {
           console.error('Error updating product', error);
@@ -102,6 +93,11 @@ export class ProductEditComponent implements OnInit {
           });
         }
       );
+    } else {
+      // Nếu form không hợp lệ, hiển thị thông báo lỗi cho từng trường
+      Object.keys(this.productForm.controls).forEach(key => {
+        this.productForm.get(key)?.markAsTouched();
+      });
     }
   }
 
@@ -115,5 +111,15 @@ export class ProductEditComponent implements OnInit {
 
   displayFilename(): string {
     return this.productForm.get('filename')?.value || 'Chưa có tệp nào được chọn';
+  }
+
+  toastmess() {
+    this.toastrService.success('Cập nhật thành công', 'Success', {
+      progressBar: true,
+      timeOut: 3000,
+      closeButton: true,
+      tapToDismiss: true,
+      toastClass: 'ngx-toastr toast-success'
+    });
   }
 }

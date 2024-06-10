@@ -11,8 +11,12 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getProducts(query?: string): Observable<any> {
+    let url = this.apiUrl;
+    if (query) {
+      url += `?q=${query}`;
+    }
+    return this.http.get<any>(url);
   }
 
   getProduct(id: string): Observable<IProduct> {

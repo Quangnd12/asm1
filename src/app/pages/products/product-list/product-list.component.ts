@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ProductsService } from '../../../@core/services/apis/products.service'; // Import ProductService
 import { IProduct } from 'app/@core/model/products.model';
 import { PdfService } from '../../../@core/services/common/pdf-table';
+
 @Component({
   selector: 'app-products-list',
   templateUrl: './product-list.component.html',
@@ -14,6 +15,7 @@ export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
   productToDelete: IProduct | null = null;
   deleteModalRef: NgbModalRef | undefined;
+  searchQuery: string = '';
 
   constructor(
     private router: Router,
@@ -28,7 +30,7 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.productService.getProducts().subscribe(
+    this.productService.getProducts(this.searchQuery).subscribe(
       response => {
         console.log('Loaded products:', response);
         if (response && Array.isArray(response.data)) { // Kiểm tra nếu response là một mảng
@@ -49,7 +51,7 @@ export class ProductListComponent implements OnInit {
   }
   
   generatePdf(): void {
-    this.pdfService.generatePdf('table-to-print', 'products'); // Id của table và tên file PDF
+    this.pdfService.generatePdf('table-to-print', 'products'); 
   }
   
   editProduct(product: any): void {
@@ -88,7 +90,7 @@ export class ProductListComponent implements OnInit {
           tapToDismiss: true,
           toastClass: 'ngx-toastr toast-success'
         });
-        this.loadProducts(); // Reload products after successful deletion
+        this.loadProducts();
       },
       error => {
         console.error('Error deleting product', error);
@@ -102,9 +104,13 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
-  
 
   navigateToCreate(): void {
     this.router.navigate(['/pages/products/create']);
+  }
+
+  onSearch(event: any): void {
+    this.searchQuery = event.target.value;
+    this.loadProducts();
   }
 }

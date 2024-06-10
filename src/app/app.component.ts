@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.checkUrl();
+    this.checkUrl();
   }
 
   protected checkUrl() {

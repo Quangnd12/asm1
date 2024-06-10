@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+
 import {BreadcrumbModule} from "xng-breadcrumb";
 import { NbCardModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,8 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-    }),
-    HttpClientModule,
+    })
   ],
   declarations: [
     ProductListComponent,

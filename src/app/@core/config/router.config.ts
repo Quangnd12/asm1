@@ -6,5 +6,5 @@ export const ROUTER_CONFIG: IRouterConfig = {
   auth: {
     login: 'auth/login',
   },
-  pages: 'pages',
+  pages: 'pages/dashboard',
 };
