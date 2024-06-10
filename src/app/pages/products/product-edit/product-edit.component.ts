@@ -12,8 +12,9 @@ import { ProductsService } from '../../../@core/services/apis/products.service';
 export class ProductEditComponent implements OnInit {
   productForm: FormGroup;
   fileToUpload: File | null = null;
-  currentFilename: string | null = null; // Lưu trữ tên tệp hiện tại
+  currentFilename: string | null = null; 
   id: string;
+  currentProduct: any; 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,14 +42,15 @@ export class ProductEditComponent implements OnInit {
     this.productsService.getProduct(id).subscribe(
       response => {
         if (response) {
-          this.currentFilename = response.filename; // Lưu trữ tên tệp hiện tại
+          this.currentProduct = response;
+          this.currentFilename = response.filename; 
           this.productForm.patchValue({
             name: response.name,
             describes: response.describes,
             price: response.price,
             filename: response.filename,
             quantity: response.quantity,
-            brand: response.brand ? response.brand.split(',') : [] // Ensure brand is split into array
+            brand: response.brand 
           });
         }
       },
@@ -94,7 +96,6 @@ export class ProductEditComponent implements OnInit {
         }
       );
     } else {
-      // Nếu form không hợp lệ, hiển thị thông báo lỗi cho từng trường
       Object.keys(this.productForm.controls).forEach(key => {
         this.productForm.get(key)?.markAsTouched();
       });

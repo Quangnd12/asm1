@@ -34,19 +34,6 @@ export class CustomerEditComponent implements OnInit {
     });
   }
 
-  // Getters for form controls
-  get username() {
-    return this.customerForm.get('username');
-  }
-
-  get email() {
-    return this.customerForm.get('email');
-  }
-
-  get phone() {
-    return this.customerForm.get('phone');
-  }
-
   // Hàm lấy thông tin khách hàng từ API
   getCustomer(id: string) {
     this.customersService.getCustomer(id).subscribe(

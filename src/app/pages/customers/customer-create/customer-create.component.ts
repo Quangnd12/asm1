@@ -28,18 +28,6 @@ export class CustomerCreateComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get username() {
-    return this.customerForm.get('username');
-  }
-
-  get email() {
-    return this.customerForm.get('email');
-  }
-
-  get phone() {
-    return this.customerForm.get('phone');
-  }
-
   onSubmit(): void {
     if (this.customerForm.valid) {
       const formData: ICustomers = this.customerForm.value;
