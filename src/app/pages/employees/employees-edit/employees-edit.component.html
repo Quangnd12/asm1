@@ -1,68 +1,47 @@
 <nb-card>
   <nb-card-header>
-    <h2 class="text-center">Cập nhật</h2>
+    <h2 class="text-center">Chỉnh sửa thông tin nhân viên</h2>
   </nb-card-header>
   <nb-card-body>
-    <form [formGroup]="employeesForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" class="needs-validation"
-      novalidate>
+    <form [formGroup]="employeesForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
       <div class="form-group mb-3">
-        <label for="id_employees" class="form-label">ID Nhân viên</label>
-        <input id="id_employees" formControlName="id_employees" class="form-control" type="number" required />
-        <div *ngIf="employeesForm.get('id_employees').touched && employeesForm.get('id_employees').invalid"
-          class="invalid-feedback">
-          ID Nhân viên là bắt buộc.
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <label for="name" class="form-label">Họ và Tên</label>
-        <input id="name" formControlName="name" class="form-control" type="text" required />
-        <div *ngIf="employeesForm.get('name').touched && employeesForm.get('name').invalid" class="invalid-feedback">
+        <label for="username" class="form-label">Họ và Tên</label>
+        <input id="username" formControlName="username" class="form-control" type="text" required />
+        <div *ngIf="username?.touched && username?.invalid" class="invalid-feedback">
           Họ và Tên là bắt buộc.
         </div>
       </div>
       <div class="form-group mb-3">
         <label for="position" class="form-label">Chức vụ</label>
         <input id="position" formControlName="position" class="form-control" type="text" required />
-        <div *ngIf="employeesForm.get('position').touched && employeesForm.get('position').invalid"
-          class="invalid-feedback">
+        <div *ngIf="position?.touched && position?.invalid" class="invalid-feedback">
           Chức vụ là bắt buộc.
         </div>
       </div>
       <div class="form-group mb-3">
         <label for="phone" class="form-label">Số điện thoại</label>
         <input id="phone" formControlName="phone" class="form-control" type="text" required />
-        <div *ngIf="employeesForm.get('phone').touched && employeesForm.get('phone').invalid" class="invalid-feedback">
+        <div *ngIf="phone?.touched && phone?.invalid" class="invalid-feedback">
           Số điện thoại không hợp lệ.
         </div>
       </div>
       <div class="form-group mb-3">
-        <label for="address" class="form-label">Địa chỉ</label>
-        <input id="address" formControlName="address" class="form-control" type="text" required />
-        <div *ngIf="employeesForm.get('address').touched && employeesForm.get('address').invalid"
-          class="invalid-feedback">
-          Địa chỉ là bắt buộc.
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <label for="email" class="form-label">E-mail</label>
+        <label for="email" class="form-label">Địa chỉ Email</label>
         <input id="email" formControlName="email" class="form-control" type="email" required />
-        <div *ngIf="employeesForm.get('email').touched && employeesForm.get('email').invalid" class="invalid-feedback">
+        <div *ngIf="email?.touched && email?.invalid" class="invalid-feedback">
           Email không hợp lệ.
         </div>
       </div>
       <div class="form-group mb-3">
-        <label for="sex" class="form-label">Giới Tính</label>
-        <input id="sex" formControlName="sex" class="form-control" type="text" required />
-        <div *ngIf="employeesForm.get('sex').touched && employeesForm.get('sex').invalid" class="invalid-feedback">
-          Giới Tính là bắt buộc.
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <label for="date_create" class="form-label">Ngày tạo</label>
-        <input id="date_create" formControlName="date_create" class="form-control" type="date" required />
-        <div *ngIf="employeesForm.get('date_create').touched && employeesForm.get('date_create').invalid"
-          class="invalid-feedback">
-          Ngày tạo là bắt buộc.
+        <label for="gender" class="form-label">Giới tính</label>
+        <select id="gender" formControlName="gender" class="form-control" required>
+          <option value="">Chọn giới tính</option>
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+          <option value="Khác">Khác</option>
+        </select>
+        <div *ngIf="gender?.touched && gender?.invalid" class="invalid-feedback">
+          Giới tính là bắt buộc.
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-block" [disabled]="!employeesForm.valid">Cập nhật</button>
