@@ -65,13 +65,13 @@ export class OrdersEditComponent implements OnInit {
   }
 
   loadOrder(): void {
-    this.ordersService.getOrderById(this.orderId).subscribe(
-      (response: IOrders) => {
+    this.ordersService.getOrder(this.orderId).subscribe(
+      (order: IOrders) => {
         this.ordersForm.patchValue({
-          customers: response.customers,
-          products: response.products,
-          quantity: response.quantity,
-          status: response.status
+          customers: order.customers,
+          products: order.products,
+          quantity: order.quantity,
+          status: order.status
         });
       },
       (error) => {
@@ -83,13 +83,12 @@ export class OrdersEditComponent implements OnInit {
   onSubmit(): void {
     if (this.ordersForm.valid) {
       const formData: IOrders = {
-        _id: this.orderId,
         customers: this.ordersForm.value.customers,
         products: this.ordersForm.value.products,
         quantity: this.ordersForm.value.quantity,
         status: this.ordersForm.value.status
       };
-      this.ordersService.updateOrder(formData).subscribe(
+      this.ordersService.updateOrder(this.orderId, formData).subscribe(
         () => {
           console.log('Order updated successfully');
           this.router.navigate(['/pages/orders']);
