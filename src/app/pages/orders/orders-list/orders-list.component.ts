@@ -1,40 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ordersData } from 'app/@core/data/order_table';
+import { OrdersService } from 'app/@core/services/apis/orders.service';
+import { IOrders } from 'app/@core/model/orders.model';
 
 @Component({
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
   styleUrls: ['./orders-list.component.scss']
 })
-export class OrdersListComponent {
-  orders: any[] = []
+export class OrdersListComponent implements OnInit {
+  orders: IOrders[] = [];
   deleteModalRef: NgbModalRef | undefined;
-  ordersToDelete: any = null;
+  ordersToDelete: IOrders | null = null;
 
-  constructor(private router: Router, private modalService: NgbModal, private OrdersService: ordersData) { }
+  constructor(
+    private router: Router,
+    private modalService: NgbModal,
+    private ordersService: OrdersService
+  ) {}
 
   ngOnInit(): void {
-    this.loadorders();
+    this.loadOrders();
   }
 
-  loadorders(): void {
-    this.orders = this.OrdersService.getData();
+  loadOrders(): void {
+    this.ordersService.getOrders().subscribe(
+      response => {
+        this.orders = response.data;
+      },
+      error => {
+        console.error('Error loading orders:', error);
+      }
+    );
   }
 
-  editOrders(orders: any): void {
-    this.router.navigate(['/pages/orders/edit', orders.id_cs]);
+  editOrders(orders: IOrders): void {
+    this.router.navigate(['/pages/orders/edit', orders._id]);
     console.log('Edit Orders', orders);
   }
 
-  openDeleteModal(content: any, orders: any): void {
+  openDeleteModal(content: any, orders: IOrders): void {
     this.ordersToDelete = orders;
     this.deleteModalRef = this.modalService.open(content);
   }
 
   confirmDelete(): void {
     if (this.ordersToDelete) {
+      // Gọi phương thức xóa từ service
+      this.ordersService.deleteOrder(this.ordersToDelete._id).subscribe(
+        response => {
+          // Xử lý thành công nếu cần
+          console.log('Delete success:', response);
+          // Sau khi xóa thành công, cập nhật lại danh sách đơn hàng
+          this.loadOrders();
+        },
+        error => {
+          console.error('Error deleting order:', error);
+          // Xử lý lỗi nếu cần
+        }
+      );
       this.deleteModalRef?.close();
     }
   }
