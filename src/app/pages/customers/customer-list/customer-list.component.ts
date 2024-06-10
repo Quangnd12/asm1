@@ -20,7 +20,7 @@ export class CustomerListComponent implements OnInit {
     private modalService: NgbModal,
     private customerService: CustomersService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadCustomers();
