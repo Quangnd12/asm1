@@ -30,26 +30,6 @@ export class EmployeesCreateComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get username() {
-    return this.employeesForm.get('username');
-  }
-
-  get position() {
-    return this.employeesForm.get('position');
-  }
-
-  get email() {
-    return this.employeesForm.get('email');
-  }
-
-  get phone() {
-    return this.employeesForm.get('phone');
-  }
-
-  get gender() {
-    return this.employeesForm.get('gender');
-  }
-
   onSubmit(): void {
     if (this.employeesForm.valid) {
       const formData: IEmployees = this.employeesForm.value;

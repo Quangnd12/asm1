@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { OrdersService } from 'app/@core/services/apis/orders.service';
 import { IOrders } from 'app/@core/model/orders.model';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
@@ -17,7 +17,8 @@ export class OrdersListComponent implements OnInit {
   constructor(
     private router: Router,
     private modalService: NgbModal,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +54,13 @@ export class OrdersListComponent implements OnInit {
           // Xử lý thành công nếu cần
           console.log('Delete success:', response);
           // Sau khi xóa thành công, cập nhật lại danh sách đơn hàng
+          this.toastr.success('Xóa khách hàng thành công', 'Success', {
+            progressBar: true,
+            timeOut: 3000,
+            closeButton: true,
+            tapToDismiss: true,
+            toastClass: 'ngx-toastr toast-success',
+          });
           this.loadOrders();
         },
         error => {

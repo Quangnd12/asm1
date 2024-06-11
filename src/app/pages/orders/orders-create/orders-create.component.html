@@ -42,7 +42,7 @@
           Trạng thái là bắt buộc.
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Thêm mới</button>
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="!ordersForm.valid">Thêm mới</button>
     </form>
   </nb-card-body>
 </nb-card>

@@ -6,41 +6,41 @@
     <form [formGroup]="employeesForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
       <div class="form-group mb-3">
         <label for="username" class="form-label">Họ và Tên</label>
-        <input id="username" formControlName="username" class="form-control" type="text" required />
-        <div *ngIf="username?.touched && username?.invalid" class="invalid-feedback">
+        <input id="username" formControlName="username" class="form-control" type="text" [ngClass]="{'is-invalid': employeesForm.get('username').invalid && employeesForm.get('username').touched}" required />
+        <div *ngIf="employeesForm.get('username').invalid && employeesForm.get('username').touched" class="invalid-feedback">
           Họ và Tên là bắt buộc.
         </div>
       </div>
       <div class="form-group mb-3">
         <label for="position" class="form-label">Chức vụ</label>
-        <input id="position" formControlName="position" class="form-control" type="text" required />
-        <div *ngIf="position?.touched && position?.invalid" class="invalid-feedback">
+        <input id="position" formControlName="position" class="form-control" type="text" [ngClass]="{'is-invalid': employeesForm.get('position').invalid && employeesForm.get('position').touched}" required />
+        <div *ngIf="employeesForm.get('position').invalid && employeesForm.get('position').touched" class="invalid-feedback">
           Chức vụ là bắt buộc.
         </div>
       </div>
       <div class="form-group mb-3">
         <label for="phone" class="form-label">Số điện thoại</label>
-        <input id="phone" formControlName="phone" class="form-control" type="text" required />
-        <div *ngIf="phone?.touched && phone?.invalid" class="invalid-feedback">
+        <input id="phone" formControlName="phone" class="form-control" type="text" [ngClass]="{'is-invalid': employeesForm.get('phone').invalid && employeesForm.get('phone').touched}" required />
+        <div *ngIf="employeesForm.get('phone').invalid && employeesForm.get('phone').touched" class="invalid-feedback">
           Số điện thoại không hợp lệ.
         </div>
       </div>
       <div class="form-group mb-3">
-        <label for="address" class="form-label">Địa chỉ Email</label>
-        <input id="email" formControlName="email" class="form-control" type="email" required />
-        <div *ngIf="email?.touched && email?.invalid" class="invalid-feedback">
+        <label for="email" class="form-label">Địa chỉ Email</label>
+        <input id="email" formControlName="email" class="form-control" type="email" [ngClass]="{'is-invalid': employeesForm.get('email').invalid && employeesForm.get('email').touched}" required />
+        <div *ngIf="employeesForm.get('email').invalid && employeesForm.get('email').touched" class="invalid-feedback">
           Email không hợp lệ.
         </div>
       </div>
       <div class="form-group mb-3">
         <label for="gender" class="form-label">Giới tính</label>
-        <select id="gender" formControlName="gender" class="form-control" required>
+        <select id="gender" formControlName="gender" class="form-control" [ngClass]="{'is-invalid': employeesForm.get('gender').invalid && employeesForm.get('gender').touched}" required>
           <option value="">Chọn giới tính</option>
           <option value="Nam">Nam</option>
           <option value="Nữ">Nữ</option>
           <option value="Khác">Khác</option>
         </select>
-        <div *ngIf="gender?.touched && gender?.invalid" class="invalid-feedback">
+        <div *ngIf="employeesForm.get('gender').invalid && employeesForm.get('gender').touched" class="invalid-feedback">
           Giới tính là bắt buộc.
         </div>
       </div>

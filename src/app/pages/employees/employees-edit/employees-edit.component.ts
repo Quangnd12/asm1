@@ -36,26 +36,6 @@ export class EmployeesEditComponent implements OnInit {
     this.loadEmployeeData();
   }
 
-  get username() {
-    return this.employeesForm.get('username');
-  }
-
-  get position() {
-    return this.employeesForm.get('position');
-  }
-
-  get email() {
-    return this.employeesForm.get('email');
-  }
-
-  get phone() {
-    return this.employeesForm.get('phone');
-  }
-
-  get gender() {
-    return this.employeesForm.get('gender');
-  }
-
   loadEmployeeData(): void {
     this.employeesService.getEmployee(this.employeeId).subscribe(
       (employee: IEmployees) => {
