@@ -33,7 +33,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getProducts(this.searchQuery).subscribe(
       response => {
         console.log('Loaded products:', response);
-        if (response && Array.isArray(response.data)) { // Kiểm tra nếu response là một mảng
+        if (response && Array.isArray(response.data)) { 
           this.products = response.data;
           this.products.forEach(product => {
             if (!product._id) {

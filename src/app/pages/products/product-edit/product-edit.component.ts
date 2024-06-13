@@ -26,9 +26,9 @@ export class ProductEditComponent implements OnInit {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
       describes: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
+      price: ['', [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$')]],
       filename: ['', Validators.required],
-      quantity: ['', [Validators.required, Validators.min(0)]],
+      quantity: ['', [Validators.required, Validators.min(0), Validators.pattern('^[0-9]*$')]],
       brand: ['', Validators.required]
     });
   }

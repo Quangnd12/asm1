@@ -7,13 +7,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PaginatorModule } from "../@theme/components/paginator/paginator.module";
 
-import { FeedbackModule } from './feedback/feedback.module';
-import { StaffModule } from './staff/staff.module';
 
 @NgModule({
   imports: [
-    StaffModule,
-    FeedbackModule,
     PagesRoutingModule,
     ThemeModule,
     DashboardModule,

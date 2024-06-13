@@ -1,12 +1,16 @@
 <nb-card>
     <nb-card-header>
-      
-      <button class="btn btn-info" nbButton  style="margin-right: 7px;" (click)="exportToExcel()">Xuất file Excel</button>
       <div class="d-flex justify-content-between align-items-center">
         <span>Danh sách đào tạo nhân viên</span>
-        <button class="btn btn-primary" nbButton (click)="navigateToCreate()">
-          <span>Thêm</span><i class="bi bi-plus"></i>
-        </button>
+        <div class="">
+          <div class="ml-auto d-flex">
+            <button class="btn btn-primary m-md-2" nbButton (click)="navigateToCreate()">
+              <span>Thêm</span><i class="bi bi-plus"></i>
+            </button>
+            <button class="btn btn-success m-md-2" nbButton  style="margin-right: 7px;" (click)="exportToExcel()">
+              <span>Xuất file Excel</span><i class="bi bi-file-earmark-excel"></i></button>
+          </div>
+        </div>
       </div>
     </nb-card-header>
     <nb-card-body>
@@ -14,6 +18,7 @@
         <table id="staffTable" class="table table-striped table-bordered">
           <thead>
             <tr>
+              <th>STT</th>
               <th>Tên nhân viên</th>
               <th>Nội dung đào tạo</th>
               <th>Người đào tạo</th>
@@ -23,7 +28,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of listStaff">
+            <tr *ngFor="let item of listStaff; let i = index">
+              <td>{{ i + 1 }}</td>
               <td>{{ item.username }}</td>
               <td>{{ item.content }}</td>
               <td>{{ item.trainers }}</td>           

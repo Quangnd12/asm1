@@ -4,6 +4,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { OrdersService } from 'app/@core/services/apis/orders.service';
 import { IOrders } from 'app/@core/model/orders.model';
 import { ToastrService } from 'ngx-toastr';
+import { exportToCSV } from 'app/@core/services/common/csv-table'; 
+
 @Component({
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
@@ -48,12 +50,9 @@ export class OrdersListComponent implements OnInit {
 
   confirmDelete(): void {
     if (this.ordersToDelete) {
-      // Gọi phương thức xóa từ service
       this.ordersService.deleteOrder(this.ordersToDelete._id).subscribe(
         response => {
-          // Xử lý thành công nếu cần
           console.log('Delete success:', response);
-          // Sau khi xóa thành công, cập nhật lại danh sách đơn hàng
           this.toastr.success('Xóa khách hàng thành công', 'Success', {
             progressBar: true,
             timeOut: 3000,
@@ -65,7 +64,6 @@ export class OrdersListComponent implements OnInit {
         },
         error => {
           console.error('Error deleting order:', error);
-          // Xử lý lỗi nếu cần
         }
       );
       this.deleteModalRef?.close();
@@ -74,5 +72,18 @@ export class OrdersListComponent implements OnInit {
 
   navigateToCreate(): void {
     this.router.navigate(['/pages/orders/create']);
+  }
+
+  exportOrdersToCSV(): void {
+    const headers = ['STT', 'Khách hàng', 'Sản phẩm', 'Số lượng', 'Trạng thái'];
+    const rows = this.orders.map((order, index) => [
+      (index + 1).toString(),
+      order.customers?.username || '',
+      order.products?.name || '',
+      order.quantity.toString(),
+      order.status
+    ]);
+
+    exportToCSV(headers, rows, 'orders');
   }
 }

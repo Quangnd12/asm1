@@ -12,6 +12,7 @@
         <table id="staffTable" class="table table-striped table-bordered">
           <thead>
             <tr>
+              <th>STT</th>
               <th>Tên Khách hàng</th>
               <th>Nội dung</th>
               <th>Đánh giá</th>
@@ -20,7 +21,8 @@
           </thead>
           
             <tbody *ngIf="!isLoading && listFeedback">
-              <tr *ngFor="let item of listFeedback">
+              <tr *ngFor="let item of listFeedback let i = index">
+                <td>{{ i + 1 }}</td>
                 <td>{{ item.username }}</td>
                 <td>{{ item.content }}</td>
                 <td>{{ item.star }}</td>           
