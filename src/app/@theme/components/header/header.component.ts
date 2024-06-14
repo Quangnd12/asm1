@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
-
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LayoutService } from "../../../@core/services/common/layout.service";
@@ -40,6 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private authService: AuthService,
+    private router: Router, // Thêm Router vào constructor
   ) { }
 
   ngOnInit() {
@@ -59,6 +59,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+    // Thêm listener để xử lý logout
+    this.menuService.onItemClick()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event) => {
+        if (event.item.title === 'Log out') {
+          this.logout();
+        }
+      });
   }
 
   ngOnDestroy() {
@@ -82,6 +91,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+    localStorage.clear();
     this.authService.logout().subscribe(() => {
       this.router.navigate(['/auth/login']);
     });

@@ -10,6 +10,7 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ToastrModule } from 'ngx-toastr';
+import { VNDCurrencyPipe} from '../../@theme/pipes/vnd-currency.pipe';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     ProductListComponent,
     ProductCreateComponent,
     ProductEditComponent,
+    VNDCurrencyPipe
   ],
 })
 export class productModule { }

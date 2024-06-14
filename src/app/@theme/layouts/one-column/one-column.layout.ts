@@ -14,12 +14,6 @@ import { Component } from '@angular/core';
       </nb-sidebar>
 
       <nb-layout-column>
-        <nb-card>
-          <nb-card-body>
-            <xng-breadcrumb></xng-breadcrumb>
-          </nb-card-body>
-        </nb-card>
-
         <ng-content select="router-outlet"></ng-content>
       </nb-layout-column>
 
