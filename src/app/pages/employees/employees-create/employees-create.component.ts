@@ -28,7 +28,7 @@ export class EmployeesCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit(): void {
     if (this.employeesForm.valid) {

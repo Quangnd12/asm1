@@ -5,4 +5,5 @@ export class IEmployees {
   email: string;
   phone: string;
   gender: string;
+
 }
