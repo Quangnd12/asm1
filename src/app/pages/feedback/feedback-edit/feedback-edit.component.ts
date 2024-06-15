@@ -54,7 +54,13 @@ export class FeedbackEditComponent  implements OnInit{
           }
         },
         (err) => {
-          console.log('Error:', err);
+          this.toastr.error('xóa thất bại', 'Error', {
+            progressBar: true,
+            timeOut: 3000,
+            closeButton: true,
+            tapToDismiss: true,
+            toastClass: 'ngx-toastr toast-error',
+          });
         }
       );
 
