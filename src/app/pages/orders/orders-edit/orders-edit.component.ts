@@ -68,8 +68,8 @@ export class OrdersEditComponent implements OnInit {
     this.ordersService.getOrder(this.orderId).subscribe(
       (order: IOrders) => {
         this.ordersForm.patchValue({
-          customers: order.customers,
-          products: order.products,
+          customers: order.customers._id,
+          products: order.products._id,
           quantity: order.quantity,
           status: order.status
         });

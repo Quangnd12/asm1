@@ -33,7 +33,7 @@
               <button class="btn btn-primary btn-sm m-md-2" (click)="editEmployee(employee)">
                 <i class="bi bi-pencil"></i>
               </button>
-              <button class="btn btn-danger btn-sm" (click)="openDeleteModal(deleteModal, employee)">
+              <button class="btn btn-danger btn-sm" (click)="openDeleteModal(deleteModal, employee)">{{employee.displayName}}
                 <i class="bi bi-trash"></i>
               </button>
             </td>

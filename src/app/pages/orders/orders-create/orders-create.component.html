@@ -10,7 +10,8 @@
           <option value="">Chọn khách hàng</option>
           <option *ngFor="let customer of customers" [ngValue]="customer._id">{{ customer.username }}</option>
         </select>
-        <div *ngIf="ordersForm.get('customers').touched && ordersForm.get('customers').invalid" class="invalid-feedback">
+        <div *ngIf="ordersForm.get('customers')?.touched && ordersForm.get('customers')?.invalid"
+          class="invalid-feedback">
           Khách hàng là bắt buộc.
         </div>
       </div>
@@ -20,15 +21,18 @@
           <option value="">Chọn sản phẩm</option>
           <option *ngFor="let product of products" [ngValue]="product._id">{{ product.name }}</option>
         </select>
-        <div *ngIf="ordersForm.get('products').touched && ordersForm.get('products').invalid" class="invalid-feedback">
+        <div *ngIf="ordersForm.get('products')?.touched && ordersForm.get('products')?.invalid"
+          class="invalid-feedback">
           Sản phẩm là bắt buộc.
         </div>
       </div>
       <div class="form-group mb-3">
         <label for="quantity" class="form-label">Số lượng</label>
         <input id="quantity" formControlName="quantity" class="form-control" type="number" required />
-        <div *ngIf="ordersForm.get('quantity').touched && ordersForm.get('quantity').invalid" class="invalid-feedback">
-          Số lượng là bắt buộc.
+        <div *ngIf="ordersForm.get('quantity')?.touched && ordersForm.get('quantity')?.invalid"
+          class="invalid-feedback">
+          <span *ngIf="ordersForm.get('quantity')?.errors?.['required']">Số lượng là bắt buộc.</span>
+          <span *ngIf="ordersForm.get('quantity')?.errors?.['min']">Số lượng phải lớn hơn 0.</span>
         </div>
       </div>
       <div class="form-group mb-3">
@@ -38,11 +42,11 @@
           <option value="Đã đặt">Đã đặt</option>
           <option value="Chưa đặt">Chưa đặt</option>
         </select>
-        <div *ngIf="ordersForm.get('status').touched && ordersForm.get('status').invalid" class="invalid-feedback">
+        <div *ngIf="ordersForm.get('status')?.touched && ordersForm.get('status')?.invalid" class="invalid-feedback">
           Trạng thái là bắt buộc.
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block" [disabled]="!ordersForm.valid">Thêm mới</button>
+      <button type="submit" class="btn btn-primary btn-block">Thêm mới</button>
     </form>
   </nb-card-body>
 </nb-card>

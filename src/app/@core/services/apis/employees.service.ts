@@ -8,7 +8,7 @@ import { IEmployees } from '../../model/employees.model';
 })
 export class EmployeesService {
   private apiUrl = 'http://localhost:8080/employees';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getEmployees(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
