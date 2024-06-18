@@ -65,7 +65,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((event) => {
         if (event.item.title === 'Log out') {
-          window.location.reload();
           this.logout();
         }
       });
